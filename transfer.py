@@ -42,7 +42,7 @@ if __name__ == '__main__':
     parser.add_argument('--n-points', type=int, default=1024)
     parser.add_argument('--alpha', type=float, default=16.0)
     parser.add_argument('--lr', type=float, default=0.002)
-    parser.add_argument('--prior', type=str, default='content', choices=['content', 'mean-style'])
+    parser.add_argument('--prior', type=str, default='mean-style', choices=['content', 'mean-style'])
     args = parser.parse_args()
 
     # Stylization model
