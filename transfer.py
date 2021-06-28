@@ -5,7 +5,7 @@ import torch
 from PIL import Image
 
 from strotss import STROTSS
-from util import load, save, to_torch, from_torch, resize
+from util import load, save, to_torch, from_torch, resize_long_side_to
 
 
 def save_animation(out_file, temp_dir, size):
@@ -25,15 +25,6 @@ def save_current_output(img, iteration):
         path = Path('./temp')
         path.mkdir(exist_ok=True)
         save(path.joinpath(f'output_({img.size(-2):04},{img.size(-1):04})_{iteration:04}.png'), from_torch(img))
-
-
-def resize_long_side_to(img, size):
-    h = img.shape[-2]
-    w = img.shape[-1]
-
-    new_size = (int(size * (h / w)), size) if w > h else (size, int(size * (w / h)))
-    y = resize(img.unsqueeze(0), new_size).squeeze(0)
-    return y
 
 
 if __name__ == '__main__':
